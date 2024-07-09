@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Things Done</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Example of adding Google Fonts for a fancy font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Get Things Done</h1>
+        </header>
+        <main>
+            <form action="{{ url_for('add_task') }}" method="POST">
+                <input type="text" name="task" placeholder="Enter your task here..." required>
+                <button type="submit">Add Task</button>
+                <button type="button" id="show-calendar">View Calendar</button>
+                <input type="hidden" name="task_date" id="task-date"> <!-- Hidden input for selected date -->
+            </form>
+            <div id="calendar-container" style="display: none;">
+                <div id="calendar"></div> <!-- Calendar will be rendered here -->
+            </div>
+            <ul class="task-list">
+                {% for task in tasks %}
+                    <li>
+                        <span>{{ task.task }}</span>
+                        {% if task.date %}
+                            <span class="task-date">({{ task.date }})</span>
+                        {% endif %}
+                        <div class="task-actions">
+                            <a href="{{ url_for('delete_task', task_id=loop.index0) }}" class="action tick">&#x2714;</a>
+                            <a href="{{ url_for('delete_task', task_id=loop.index0) }}" class="action trash">&#x1F5D1;</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h2>Completed Tasks</h2>
+            <ul class="completed-list">
+                {% for task in completed_tasks %}
+                    <li>
+                        <span>{{ task.task }}</span>
+                        {% if task.date %}
+                            <span class="task-date">({{ task.date }})</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <form action="{{ url_for('clear_completed_tasks') }}" method="POST">
+                <button type="submit" class="reenter-button">Re-enter All Tasks</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarContainer = document.getElementById('calendar-container');
+            const calendarInput = document.getElementById('task-date');
+            const showCalendarBtn = document.getElementById('show-calendar');
+
+            let calendar = flatpickr('#calendar', {
+                inline: true, // Render as inline calendar
+                dateFormat: 'Y-m-d', // Date format
+                onChange: function (selectedDates, dateStr, instance) {
+                    calendarInput.value = dateStr; // Set selected date to hidden input
+                }
+            });
+
+            showCalendarBtn.addEventListener('click', function () {
+                calendarContainer.style.display = 'block';
+                calendar.open();
+            });
+        });
+    </script>
+</body>
+</html>

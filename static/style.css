@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff9e6; /* Light pastel yellow background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #f0e68c; /* Light yellow border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Roboto Slab', serif; /* Fancy font example */
+    font-size: 2em; /* Adjust font size as needed */
+    color: #333; /* Default color */
+    text-transform: uppercase; /* Uppercase text */
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    border: 1px solid #f0e68c; /* Light yellow border */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffeb3b; /* Pastel yellow button */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffcc00; /* Darker yellow on hover */
+}
+
+.task-list, .completed-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-list li, .completed-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #f0e68c; /* Light yellow border */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff4cc; /* Lighter pastel yellow */
+}
+
+.task-actions {
+    font-size: 20px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.task-actions .action {
+    margin-left: 10px; /* Add space between the emojis */
+    text-decoration: none;
+    color: #333;
+}
+
+.task-actions .action:hover {
+    color: #ffeb3b; /* Pastel yellow on hover */
+}
+
+.task-actions .action.trash {
+    color: #333; /* Dark black */
+}
+
+.task-actions .action.tick {
+    color: red; /* Red color for important tick */
+}
+
+.completed-list li span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.reenter-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reenter-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
